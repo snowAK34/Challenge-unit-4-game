@@ -9,13 +9,13 @@
 
 let isCharSelected = false;
 let isDefenderSelected = false;
-let playerChar ;
-let defender ;
+let playerChar;
+let defender;
 
 // Make an object for each character
 let lion = {}
 let snake = {}
-let raven = {}
+let eagle = {}
 let badger = {}
 
 // Place characters at top of page for game start
@@ -23,79 +23,102 @@ function initialSetup() {
 
     // reset variables
     lion = {
-        health : 150,
-        basePower : 12,
-        attackPower : 12,
-        counterAttackPower : 20
+        health: 150,
+        basePower: 12,
+        attackPower: 12,
+        counterAttackPower: 20
     }
     snake = {
-        health : 180,
-        basePower : 16,
-        attackPower : 16,
-        counterAttackPower : 25
+        health: 180,
+        basePower: 16,
+        attackPower: 16,
+        counterAttackPower: 25
     }
-    raven = {
-        health : 120,
-        basePower : 8,
-        attackPower : 8,
-        counterAttackPower : 10
-    }    
+    eagle = {
+        health: 120,
+        basePower: 8,
+        attackPower: 8,
+        counterAttackPower: 10
+    }
     badger = {
-        health : 100,
-        basePower : 4,
-        attackPower : 4,
-        counterAttackPower : 5
+        health: 100,
+        basePower: 4,
+        attackPower: 4,
+        counterAttackPower: 5
     }
     $("#lion-health").text(lion.health);
     $("#snake-health").text(snake.health);
-    $("#raven-health").text(raven.health);
+    $("#eagle-health").text(eagle.health);
     $("#badger-health").text(badger.health);
+}
+
+function mapToObject(valStr) {
+    if (valStr === "lion") {
+        return lion;
+    }
+    if (valStr === "snake") {
+        return snake;
+    }
+    if (valStr === "eagle") {
+        return eagle;
+    }
+    if (valStr === "badger") {
+        return badger;
+    }
 }
 
 // To start the game, player clicks a character to move it to empty player-spot
 // Rest of characters move to enemies available
 function initialRoles() {
-    $("#lion-pic").on("click", function() {
-        playerChar = $(this).val();
-        $("#lion-pic").detach().appendTo("#player-spot");
-        $("#snake-pic").detach().appendTo("#enemies-avail");
-        $("#eagle-pic").detach().appendTo("#enemies-avail");
-        $("#badger-pic").detach().appendTo("#enemies-avail");
-    });
-    $("#snake-pic").on("click", function() {
-        playerChar = $(this).val();
-        $("#snake-pic").detach().appendTo("#player-spot");
-        $("#lion-pic").detach().appendTo("#enemies-avail");
-        $("#eagle-pic").detach().appendTo("#enemies-avail");
-        $("#badger-pic").detach().appendTo("#enemies-avail");
-    });
-    $("#eagle-pic").on("click", function() {
-        playerChar = $(this).val();
-        $("#eagle-pic").detach().appendTo("#player-spot");
-        $("#lion-pic").detach().appendTo("#enemies-avail");
-        $("#snake-pic").detach().appendTo("#enemies-avail");
-        $("#badger-pic").detach().appendTo("#enemies-avail");   
-    });
-    $("#badger-pic").on("click", function() {
-        playerChar = $(this).val();
-        $("#badger-pic").detach().appendTo("#player-spot");
-        $("#lion-pic").detach().appendTo("#enemies-avail");
-        $("#snake-pic").detach().appendTo("#enemies-avail");
-        $("#eagle-pic").detach().appendTo("#enemies-avail");   
-    });
-    isCharSelected = true;
+    if (isCharSelected === false) {
+        $("#lion-pic").on("click", function () {
+            playerChar = mapToObject($(this).val());
+            $("#lion-pic").detach().appendTo("#player-spot");
+            $("#snake-pic").detach().appendTo("#enemies-avail");
+            $("#eagle-pic").detach().appendTo("#enemies-avail");
+            $("#badger-pic").detach().appendTo("#enemies-avail");
+        });
+        $("#snake-pic").on("click", function () {
+            playerChar = mapToObject($(this).val());
+            $("#snake-pic").detach().appendTo("#player-spot");
+            $("#lion-pic").detach().appendTo("#enemies-avail");
+            $("#eagle-pic").detach().appendTo("#enemies-avail");
+            $("#badger-pic").detach().appendTo("#enemies-avail");
+        });
+        $("#eagle-pic").on("click", function () {
+            playerChar = mapToObject($(this).val());
+            $("#eagle-pic").detach().appendTo("#player-spot");
+            $("#lion-pic").detach().appendTo("#enemies-avail");
+            $("#snake-pic").detach().appendTo("#enemies-avail");
+            $("#badger-pic").detach().appendTo("#enemies-avail");
+        });
+        $("#badger-pic").on("click", function () {
+            playerChar = mapToObject($(this).val());
+            $("#badger-pic").detach().appendTo("#player-spot");
+            $("#lion-pic").detach().appendTo("#enemies-avail");
+            $("#snake-pic").detach().appendTo("#enemies-avail");
+            $("#eagle-pic").detach().appendTo("#enemies-avail");
+        });
+        isCharSelected = true;
+    }
+    if (isCharSelected === true) {
+        chooseDefender();
+    }
+    console.log(isCharSelected);
+    console.log(playerChar);
 }
-
 
 function chooseDefender() {
     if (isDefenderSelected === false) {
-        $(".character").on("click", function() {
-            defender = $(this).val();
-            $(defender).detach().appendTo("#current-enemy");
+        $(".character").on("click", function () {
+            defender = mapToObject($(this).val());
+            $($(this).val()).detach().appendTo("#current-enemy");
         });
     }
     isDefenderSelected = true;
-    if (("#enemies-avail").is(":empty") && ("#current-enemy").is(":empty")) {
+    fight();
+
+    if ($("#enemies-avail").is(":empty") && ("#current-enemy").is(":empty")) {
         $("#player-spot").html("<h3>You Won!</h3>");
     }
     $("#reset").html("<button>Reset</button>");
@@ -103,7 +126,7 @@ function chooseDefender() {
 
 function fight() {
     if (isDefenderSelected === true) {
-        $("#attack").on("click", function() {
+        $("#attack").on("click", function () {
             playerChar.health = playerChar.health - defender.counterAttackPower;
             defender.health = defender.health - playerChar.attackPower;
             playerChar.attackPower = playerChar.attackPower + playerChar.basePower;
@@ -131,12 +154,8 @@ function gameEnd() {
 
 initialSetup();
 initialRoles();
-chooseDefender();
-fight();
 
-$("#reset").on("click", function() {
+$("#reset").on("click", function () {
     initialSetup();
     initialRoles();
-    chooseDefender();
-    fight();
 });
