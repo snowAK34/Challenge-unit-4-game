@@ -104,7 +104,7 @@ function chooseDefender() {
 function fight() {
     if (isDefenderSelected === true) {
         $("#attack").on("click", function() {
-            playerChar.health = playerChar.health - defender.attackPower;
+            playerChar.health = playerChar.health - defender.counterAttackPower;
             defender.health = defender.health - playerChar.attackPower;
             playerChar.attackPower = playerChar.attackPower + playerChar.basePower;
         });
