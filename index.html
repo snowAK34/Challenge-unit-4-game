@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-us">
+
+  <head>
+    <title>RPG Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+
+  <body>
+      <div class="container">
+          <div class="row">
+              <h1>RPG Game</h1>
+          </div>
+          <div id="char-bank" class="row">
+            <!-- all characters start here -->
+            <button id="lion-pic">
+              <div class="card character">
+                <img src="assets/images/lion_50.jpeg" class="card-img-top" alt="lion">
+                <div id="lion-info" class="card-body">
+                  <h5 class="card-title">Lion</h5>
+                  <p class="card-text">
+                    Health: <span id="lion-health"></span>
+                  </p>
+                </div>
+              </div>
+            </button>
+            <button id="snake-pic">
+              <div class="card character">
+                <img src="assets/images/snake_50.jpeg" class="card-img-top" alt="snake">
+                <div id="snake-info" class="card-body">
+                  <h5 class="card-title">Snake</h5>
+                  <p class="card-text">
+                    Health: <span id="snake-health"></span>
+                  </p>
+                </div>
+              </div>
+            </button>
+            <button id="eagle-pic">
+              <div class="card character">
+                <img src="assets/images/eagle_50.jpeg" class="card-img-top" alt="eagle">
+                <div id="eagle-info" class="card-body">
+                  <h5 class="card-title">Eagle</h5>
+                  <p class="card-text">
+                    Health: <span id="eagle-health"></span>
+                  </p>
+                </div>
+              </div>
+            </button>
+            <button id="badger-pic">
+              <div class="card character">
+                <img src="assets/images/badger_50.jpeg" class="card-img-top" alt="badger">
+                <div id="badger-info" class="card-body">
+                  <h5 class="card-title">Badger</h5>
+                  <p class="card-text">
+                    Health: <span id="badger-health"></span>
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+          <div class="row">
+            <h3>Your Character</h3>
+          </div>
+          <div id="player-spot" class="row">
+            <!-- Character that the player selects goes here -->
+          </div>
+          <div class="row">
+              <h3>Enemies available to attack</h3>
+          </div>
+          <div id="enemies-avail" class="row">
+            <!-- rest of characters go here after character selection -->
+          </div>
+          <div class="row">
+              <h3>Fight section</h3>
+          </div>
+          <div class="row">
+              <button id="attack">Fire Hex</button>
+          </div>
+          <div class="row">
+              <h3>Defender</h3>
+          </div>
+          <div id="current-enemy" class="row">
+            <!-- enemy that the player picks to attack goes here -->
+          </div>
+          <div id="reset"></div>
+      </div>
+
+    <script type="text/javascript" src="assets/javascript/game.js" ></script>
+  </body>
+</html>
