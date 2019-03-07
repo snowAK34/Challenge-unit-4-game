@@ -16,6 +16,6 @@ At this point, the game does not have functioning Javascript to run properly.  M
 
 Photos by:  
 
-*Gabriela Palai from Pexels
-*Photo by Anthony from Pexels
-*Photo by Robert Hoffmann on Unsplash
+* Gabriela Palai from Pexels
+* Photo by Anthony from Pexels
+* Photo by Robert Hoffmann on Unsplash
